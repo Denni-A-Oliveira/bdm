@@ -10,15 +10,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>BDM - Bolsa Digital de Mercadoria - </title>
+    <title>Milemaq - Bolsa Digital de Mercadoria</title>
 </head>
 
 <body class="bg-light">
     <div class="container">
         <main>
             <div class="py-5 text-center">
-                <img class="d-block mx-auto mb-4" src="./Captura de tela 2024-05-13 202512.png" alt="" width="150"
-                    height="57">
+                <img class="d-block mx-auto mb-4" src="./Logo Milemaq - 5 x 2,5 cm fundo transparente.png" alt="Milemaq"
+                    width="250" height="70">
                 <h2>Caríssimo produtor(a),</h2>
                 <p class="lead">
                     É com muita alegria que apresentamos a vocês uma nova modalidade de compra e venda, uma plataforma
@@ -41,7 +41,7 @@
                             <div class="col-sm-6">
                                 <label for="nome" class="form-label">Nome</label>
                                 <input type="text" class="form-control" id="nome" placeholder="Digite o seu nome..."
-                                    value="" required="">
+                                    value="" required="required">
                                 <div class="invalid-feedback">
                                     Informação obrigatória.
                                 </div>
@@ -193,8 +193,11 @@
                             <hr class="my-4">
 
                             <h4 class="mb-3">Dados da Produção Agrícula</h4>
+                            <p class="lead h6">
+                                *Utilize <em>'Outro'</em> no campo 'Tipo de Produto' para informar produtos que não estão na relação.
+                            </p>
                             <div class="col-md-4">
-                                <label for="tipo_produto" class="form-label">Tipo de produção</label>
+                                <label for="tipo_produto" class="form-label">Tipo de Produção</label>
                                 <select class="form-select" id="tipo_produto" required="">
                                     <option>-- Selecione --</option>
                                     <option value="Orgância">Orgânica</option>
@@ -205,20 +208,47 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
-                                <label for="produto" class="form-label">Produto</label>
+
+                            <div class="col-md-4">
+                                <label for="produto" class="form-label">Tipo de Produto</label>
                                 <select class="form-select" id="produto" required="">
                                     <option>-- Selecione --</option>
                                     <option value="Verdura">Verdura</option>
                                     <option value="Legume">Legume</option>
                                     <option value="Fruta">Fruta</option>
+                                    <option value="Outro">Outro</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Please select a valid country.
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <label for="quantidade" class="form-label">Quantidade</label>
+                            <div class="col-md-4" id="produto_especifico_container">
+                                <label for="produto_especifico" class="form-label">Produto</label>
+                                <span class="text-muted">
+                                    (Selecione um <em>'Tipo de Produto'</em> antes.)
+                                </span>
+                                <select class="form-select" id="produto_especifico" required="">
+                                    <option>-- Selecione --</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid country.
+                                </div>
+                            </div>
+                            <div class="col-md-4" id="produto_outro_container">
+                                <label for="produto_outro" class="form-label">Produto
+                                    <span class="text-muted">
+                                        (Digite o <em>produto</em> no campo abaixo.)
+                                    </span>
+                                </label>
+                                <input type="text" class="form-control" id="produto_outro" required="">
+                                <div class="invalid-feedback">
+                                    Por favor, insira o tipo de produto.
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <label for="quantidade" class="form-label">Unidade</label>
                                 <select class="form-select" id="quantidade" required="">
                                     <option value="">-- Selecione --</option>
                                     <option>Kg</option>
@@ -229,8 +259,17 @@
                                     Please select a valid country.
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <label for="quantidade_especifica" class="form-label">Quantidade</label>
+                                <input type="number" class="form-control" id="quantidade_especifica"
+                                    placeholder="Digite o quantidade..." required="" min="0" step="any">
+                                <div class="invalid-feedback">
+                                    Please enter your shipping address.
+                                </div>
+                            </div>
 
-                            <div class="col-md-3">
+
+                            <div class="col-md-4">
                                 <label for="frequencia" class="form-label">Frequência</label>
                                 <select class="form-select" id="frequencia" required="">
                                     <option>-- Selecione --</option>
@@ -244,14 +283,19 @@
                                     Please select a valid country.
                                 </div>
                             </div>
-
-
-                            <button id="adicionarLinha" class="btn btn-secondary btn-sm">Adicionar Linha</button>
+                            <p class="lead h6">
+                                *Após preencher os campos acima clique no botão <em>'Adicionar'</em> para inserir as informções na tabela.
+                            </p>
+                            <div class="d-flex justify-content-end">
+                                <button id="adicionarLinha" class="btn btn-secondary btn-md col-2">Adicionar</button>
+                            </div>
                             <table id="tb_produtos" class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Tipo de produção</th>
+                                        <th>Tipo de Produção</th>
+                                        <th>Tipo de Produto</th>
                                         <th>Produto</th>
+                                        <th>Unidade</th>
                                         <th>Quantidade</th>
                                         <th>Frequência</th>
                                         <th>Ações</th>
@@ -261,7 +305,7 @@
                                 </tbody>
                             </table>
 
-                            <hr class="my-4">
+                            <!--  <hr class="my-4">
 
                             <div class="col-md-4">
                                 <label for="outros_produtos" class="form-label">Outros Produtos
@@ -288,7 +332,7 @@
                                     </span>
                                 </label>
                                 <textarea class="form-control" id="textbox_outros_produtos" rows="3"></textarea>
-                            </div>
+                            </div> -->
                         </div>
 
                         <hr class="my-4">
@@ -297,7 +341,7 @@
                         <div class="col-md-3">
                             <label for="tem_licenciamento" class="form-label">Tem licenciamento
                                 <span class="text-muted">
-                                    ( Pressione <em>CTRL</em> para selecionar mais de um licenciamento.)
+                                    (Pressione <em>CTRL</em> para selecionar mais de um licenciamento.)
                                 </span>
                             </label>
                             <select class="form-select" multiple aria-label="multiple select example"
@@ -320,11 +364,10 @@
         </main>
 
         <footer class="my-5 pt-5 text-muted text-center text-small">
-            <p class="mb-1">© 2017–2021 BDM AGRO</p>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">+55 11 98309-3285</a></li>
-                <li class="list-inline-item"><a href="#">magalhaes@bdmaggricola.com.br</a></li>
-                <li class="list-inline-item"><a href="#">https://bdmagricola.com.br/</a></li>
+            <p class="mb-1">© 2016–2024 Milemaq</p>
+            <ul class="list-group">
+                <li class="list-group"><a href="#">+55 (32) 98879-4164</a></li>
+                <li class="list-group"><a href="#">adm@milemaq.com.br</a></li>
             </ul>
         </footer>
     </div>
@@ -349,22 +392,174 @@
 
     <script>
         $(document).ready(function () {
+            //Preencher o select conforme a relação de produtos
+
+            const produtos = {
+                "Frutas": [
+                    "Abacate",
+                    "Acerola",
+                    "Abacaxi",
+                    "Ameixa",
+                    "Araçá",
+                    "Banana Prata",
+                    "Banana Nanica",
+                    "Banana Oura",
+                    "Banana da Terra",
+                    "Banana Maça",
+                    "Carambola",
+                    "Cereja",
+                    "Laranja Pera",
+                    "Laranaja Serra D'Água",
+                    "Laranja Bahia",
+                    "Laranja Campista",
+                    "Laranja Lima",
+                    "Limão Taiti",
+                    "Limão Siciliano",
+                    "Limão Galego",
+                    "Tangerina",
+                    "Mexerica Poncam",
+                    "Damasco",
+                    "Figo",
+                    "Framboesa",
+                    "Fruta do Conde",
+                    "Goiaba",
+                    "Graviola",
+                    "Kiwi",
+                    "Líchia",
+                    "Maçã",
+                    "Mamão",
+                    "Manga",
+                    "Maracujá",
+                    "Melancia",
+                    "Melão",
+                    "Morango",
+                    "Nectarina",
+                    "Pêssego",
+                    "Pera",
+                    "Pitaya",
+                    "Romã",
+                    "Seriguela",
+                    "Tamarindo",
+                    "Uva"
+                ],
+                "Legumes": [
+                    "Abóbora",
+                    "Abobrinha",
+                    "Aipo",
+                    "Alho",
+                    "Alface",
+                    "Aspargo",
+                    "Batata",
+                    "Batata-Doce",
+                    "Beterraba",
+                    "Brócolis",
+                    "Cenoura",
+                    "Cebola",
+                    "Cebola Roxa",
+                    "Chuchu",
+                    "Couve",
+                    "Couve-Flor",
+                    "Inhame",
+                    "Jiló",
+                    "Lentilha",
+                    "Miho-Verde",
+                    "Mandioca",
+                    "Pimentão",
+                    "Pepino",
+                    "Tomate",
+                    "Tomate Cereja",
+                    "Tomate Italiano"
+                ],
+                "Verduras": [
+                    "Alface",
+                    "Agrião",
+                    "Alho Poró",
+                    "Chicória",
+                    "Cebolinha",
+                    "Espinafre",
+                    "Louro",
+                    "Manjericão",
+                    "Manjericão Roxo",
+                    "Orégano",
+                    "Salsa",
+                    "Salsinha",
+                    "Couve",
+                    "Almeirão",
+                    "Mostarda Taioba",
+                    "Acelga",
+                    "Repolho",
+                    "Repolho Roxo",
+                    "Rúcula",
+                    "Coentro",
+                    "Tomilho"
+                ]
+            }
+
+            const frutas = produtos.Frutas.slice().sort();
+            const verduras = produtos.Verduras.slice().sort();
+            const legumes = produtos.Legumes.slice().sort();
+
+            $("#produto_outro_container").hide(); //Oculta a div
+
+            $("#produto").change(function () {
+                var selectedCategory = $(this).val();
+                let data = "";
+
+                if (selectedCategory === "Outro") {
+                    // Show "Outro" product input and disable select
+                    $("#produto_especifico_container").hide();
+                    $("#produto_especifico").prop("disabled", true);
+                    $("#produto_outro_container").show();
+                } else {
+                    // Show product select and disable "Outro" product input
+                    $("#produto_outro").val("");
+                    $("#produto_outro_container").hide();
+                    $("#produto_especifico_container").show();
+                    $("#produto_especifico").prop("disabled", false);
+                };
+
+                if (selectedCategory == "Fruta") {
+                    data = frutas;
+                } else if (selectedCategory == "Verdura") {
+                    data = verduras;
+                } else if (selectedCategory == "Legume") {
+                    data = legumes;
+                }
+
+                if (selectedCategory == "-- Selecione --" || selectedCategory == "Outro") {
+                    $("#produto_especifico").attr("disabled", true); // Disable select
+                } else {
+                    $("#produto_especifico").empty();
+                    $("#produto_especifico").attr("disabled", false); // Enable select
+                    data.forEach(function (productName) {
+                        $("#produto_especifico").append($("<option></option>").val(productName).text(productName));
+                    });
+                };
+            });
+
             // Função para adicionar uma nova linha à tabela
             //tipo_produto,produto,quantidade,frequencia
 
             function adicionarLinha() {
                 var tipoProduto = $('#tipo_produto').val();
                 var produto = $('#produto').val();
+                var produto_especifico = $('#produto_especifico').val();
+                var produto_outro = $("#produto_outro").val();
                 var quantidade = $('#quantidade').val();
+                var quantidade_especifica = $('#quantidade_especifica').val();
                 var frequencia = $('#frequencia').val();
+
+                var produto_especifico_outro = produto_outro ? produto_outro : produto_especifico
 
                 if (tipoProduto && produto && quantidade && frequencia) {
                     var linha = "<tr>";
                     linha += "<td>" + tipoProduto + "</td>";
                     linha += "<td>" + produto + "</td>";
+                    linha += "<td>" + produto_especifico_outro + "</td>";
                     linha += "<td>" + quantidade + "</td>";
+                    linha += "<td>" + quantidade_especifica + "</td>";
                     linha += "<td>" + frequencia + "</td>";
-                    linha += "<td><input value='Excluir' type='button' id='excluir_linha' class='btn btn-danger btn-sm' onclick='apagarLinha(this)'/></td>";
+                    linha += "<td><input value='Excluir' type='button' id='excluir_linha' class='btn btn-danger btn-sm'/></td>";
                     linha += "</tr>";
 
                     $("#tbody").append(linha);
@@ -387,14 +582,27 @@
             $("#adicionarLinha").click(function () {
                 event.preventDefault();
                 adicionarLinha();
+                $('#tipo_produto').val("-- Selecione --");
+                $('#produto').val("-- Selecione --");
+
+                $("#produto_especifico_container").show();
+                $("#produto_outro").val("");
+                $("#produto_outro_container").hide();
+                $('#produto_especifico').val("");
+                $("#produto_especifico").attr("disabled", true);
+
+                $('#quantidade').val("");
+                $('#quantidade_especifica').val("");
+                $('#frequencia').val("-- Selecione --");
             });
 
             function resetFormValues() {
+                
                 var formElements = document.getElementById("form_cadastro").elements;
                 for (var i = 0; i < formElements.length; i++) {
                     var element = formElements[i];
                     // Check for all supported input types
-                    if (element.type === "text" || element.type === "email" || element.type === "password") {
+                    if (element.type === "text" || element.type === "email" || element.type === "password" || element.type === "number") {
                         element.value = "";
                     } else if (element.type === "checkbox" || element.type === "radio") {
                         element.checked = false;
@@ -414,6 +622,7 @@
 
                 //Limpar o textbox
                 $("#textbox_outros_produtos").val("")
+                $('#produto_especifico').val("");
 
                 window.scrollTo(0, 0);
                 alert("Formulário encaminhado com sucesso!");
@@ -424,7 +633,6 @@
                 event.stopImmediatePropagation();
 
                 var uniqueKey = uuid.v4();
-                console.log("Unique Key:", uniqueKey);
 
                 var nome = $('#nome').val();
                 var sobrenome = $('#sobrenome').val();
@@ -446,7 +654,7 @@
                 var localizacao_gps = $('#localizacao_gps').val();
 
                 //Percorrer a tabela
-                var table = $('#tb_produtos'); // Substitua 'minha_tabela' pelo ID da sua tabela
+                var table = $('#tb_produtos'); // Substitua 'minha_tabela' pelo ID da sua tabela 
                 var rows = table.find('tr'); // Seleciona todas as linhas da tabela
 
                 for (let i = 1; i < rows.length; i++) { // Comece em 1 para ignorar a linha de cabeçalho
@@ -464,14 +672,18 @@
 
                     var tipo_produto = cells[0]
                     var produto = cells[1]
-                    var quantidade = cells[2]
-                    var frequencia = cells[3]
+                    var produto_especifico = cells[2]
+                    var quantidade = cells[3]
+                    var quantidade_especifica = cells[4]
+                    var frequencia = cells[5]
 
                     url = "https://docs.google.com/forms/d/e/1FAIpQLScIvjONG4tDsDK1yOyAyGrZynZd0mdDwOLl4hKEs4zGnNn4Ig/formResponse?usp=pp_url&"
                     url += "entry.1950609710=" + encodeURIComponent(uniqueKey) + "&"
                     url += "entry.507177295=" + encodeURIComponent($(tipo_produto).text()) + "&"
-                    url += "entry.1979337960=" + encodeURIComponent($(produto).text()) + "&"
-                    url += "entry.162459162=" + encodeURIComponent($(quantidade).text()) + "&"
+                    url += "entry.1721070707=" + encodeURIComponent($(produto).text()) + "&"
+                    url += "entry.1979337960=" + encodeURIComponent($(produto_especifico).text()) + "&"
+                    url += "entry.917168001=" + encodeURIComponent($(quantidade).text()) + "&"
+                    url += "entry.162459162=" + encodeURIComponent($(quantidade_especifica).text()) + "&"
                     url += "entry.814612777=" + encodeURIComponent($(frequencia).text()) + "&"
                     url += "submit=Submit"
 
